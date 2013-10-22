@@ -14,9 +14,7 @@ helpers do
 end
 
 get '/' do
-  if logged_in?
-    @current_user = User.find(session[:user_id])
-  end
+  @current_user = User.find(session[:user_id]) if logged_in?
   erb :index
 end
 
@@ -29,12 +27,8 @@ get '/create_activity' do
 end
 
 post '/create_activity' do
-  if logged_in?
-    Activity.create(params)
-    redirect '/'
-  else
-    redirect '/'
-  end
+  Activity.create(params) if logged_in?
+  redirect '/'
 end
 
 post '/signin' do
