@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-
+require_relative 'models/user'
 require_relative 'models/activity'
 
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || "postgres://localhost/do_something_dev")
@@ -8,8 +8,7 @@ ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || "postgres://local
 enable :sessions
 
 
-class User < ActiveRecord::Base
-end
+
 
 get '/' do
   if session[:user_id]
@@ -28,7 +27,9 @@ post '/create_activity' do
 end
 
 post '/signup' do
-  user = User.create(params[:user])
+  user = User.new(params[:user])
+  user.password = params[:password]
+  user.save!
   session[:user_id] = user.id
   redirect('/')
 end
