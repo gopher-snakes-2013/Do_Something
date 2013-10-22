@@ -15,7 +15,6 @@ get '/create_activity' do
 end
 
 post '/create_activity' do
-  Activity.create!(params)
-  p params
+  Activity.create(params)
   redirect '/'
 end
