@@ -7,28 +7,49 @@ ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || "postgres://local
 
 enable :sessions
 
-
-
+helpers do
+  def logged_in?
+    session[:user_id] ? true : false
+  end
+end
 
 get '/' do
-  if session[:user_id]
+  if logged_in?
     @current_user = User.find(session[:user_id])
   end
   erb :index
 end
 
 get '/create_activity' do
- erb :create_activity
+  if logged_in?
+    erb :create_activity
+  else
+    redirect '/'
+  end
 end
 
 post '/create_activity' do
-  Activity.create(params)
-  redirect '/'
+  if logged_in?
+    Activity.create(params)
+    redirect '/'
+  else
+    redirect '/'
+  end
+end
+
+post '/signin' do
+  @user = User.find_by_email(params[:sign_in_user][:email])
+  if @user && (@user.password == params[:sign_in_user][:password])
+    session[:user_id] = @user.id
+    redirect '/'
+  else
+    redirect '/'
+  end
 end
 
 post '/signup' do
   user = User.new(params[:user])
-  user.password = params[:password]
+  user.password = params[:user][:password]
   user.save!
   session[:user_id] = user.id
   redirect('/')
