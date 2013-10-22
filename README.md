@@ -1,13 +1,13 @@
 Do_Something
 ============
 
-Team Do Something  
+Team Do Something
 
 User Stories
 
 
-Release 1 - 
-* User can sign up with Facebook or email
+Release 1 -
+* User can go to Do Something home page
 * User can create a location and rate it
 * User can see all items they have rated
 * User can randomly pick one to do
@@ -15,6 +15,7 @@ Release 1 -
 Release 2 -
 * Add filtering: Price, Location, etc
 * Add Friends (Facebook API?)
+* User can sign up with Facebook or email
 
 Release 3 -
 * APIs: Google Maps, Yelp
