@@ -1,4 +1,14 @@
 <h2>Remember an Activity</h2>
+
+<div id="error_messages">
+  <% if @errors %>
+    Oops!<br/>
+    <% @errors.each do |k, v| %>
+      <%="#{k.capitalize} #{v[0]}!" %><br/>
+    <% end %>
+  <% end%>
+</div>
+
 <form method="POST" action="/create_activity">
   <title>Create Activity</title>
   <input type="text" name="title" placeholder ="Activity Name">
@@ -33,6 +43,7 @@
     
   </select>
   <input type="submit" value="Add Activity">
+
   <br>
  
   
