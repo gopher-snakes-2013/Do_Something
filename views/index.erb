@@ -1,9 +1,13 @@
 <h1>Welcome to Do Something!</h2>
 
-<h2>Sign Up</h2>
-<form method="post" action="/signup">
-  <label>First Name: <input type="text" name="user[first_name]" placeholder="First Name"></label><br/>
-  <label>Email: <input type="text" name="user[email]" placeholder="Email"></label><br/>
-  <label>Password: <input type="password" name="user[password]" placeholder="Password"></label><br/>
-  <button name="Sign Up">Sign Up</button>
-</form>
+<% if @user %>
+  <h2>Welcome, <%= @user.first_name %></h2>
+<% else %>
+  <h2>Sign Up</h2>
+  <form method="post" action="/signup">
+    <label>First Name: <input type="text" name="user[first_name]" placeholder="First Name"></label><br/>
+    <label>Email: <input type="text" name="user[email]" placeholder="Email"></label><br/>
+    <label>Password: <input type="password" name="user[password_hash]" placeholder="Password"></label><br/>
+    <input type="submit" value="Sign Up">
+  </form>
+<% end %>

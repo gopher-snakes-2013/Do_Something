@@ -7,6 +7,7 @@ gem 'capybara'
 gem 'sinatra'
 gem 'activerecord'
 gem 'sinatra-activerecord'
+gem 'pg'
 
 
 group :development do

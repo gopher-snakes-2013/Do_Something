@@ -18,8 +18,8 @@ feature "User can sign up" do
     expect(page).to have_content("Welcome, Steven")
   end
 
-  after :each do
-    users = User.all
-    users.each {|user| user.destroy}
-  end
+  # after :each do
+  #   users = User.all
+  #   users.each {|user| user.destroy}
+  # end
 end
