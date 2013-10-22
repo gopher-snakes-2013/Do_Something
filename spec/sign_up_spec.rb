@@ -5,9 +5,6 @@ Capybara.app = Sinatra::Application
 
 feature "User can sign up" do
 
-  # before :each do
-  #   User.create(email: "steven@example.com", password: "password")
-  # end
 
   scenario "enter their email" do
     visit "/"
@@ -18,8 +15,13 @@ feature "User can sign up" do
     expect(page).to have_content("Welcome, Steven")
   end
 
-  # after :each do
-  #   users = User.all
-  #   users.each {|user| user.destroy}
-  # end
+  scenario "new user can logout" do
+    visit "/logout"
+    expect(page).to_not have_content("Welcome, Steven")
+  end
+
+  after :each do
+    users = User.all
+    users.each {|user| user.destroy}
+  end
 end
