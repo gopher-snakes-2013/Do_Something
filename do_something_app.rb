@@ -1,9 +1,12 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 
-enable :sessions
+require_relative 'models/activity'
 
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || "postgres://localhost/do_something_dev")
+
+enable :sessions
+
 
 class User < ActiveRecord::Base
 end
@@ -16,7 +19,12 @@ get '/' do
 end
 
 get '/create_activity' do
- "hello world!"
+ erb :create_activity
+end
+
+post '/create_activity' do
+  Activity.create(params)
+  redirect '/'
 end
 
 post '/signup' do

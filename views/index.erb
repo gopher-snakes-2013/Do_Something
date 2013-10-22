@@ -2,6 +2,7 @@
 
 <% if @user %>
   <h2>Welcome, <%= @user.first_name %></h2>
+  <a href="/create_activity">Create an activity</a>
 <% else %>
   <h2>Sign Up</h2>
   <form method="post" action="/signup">

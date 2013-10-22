@@ -1,0 +1,39 @@
+<h2>Remember an Activity</h2>
+<form method="POST" action="/create_activity">
+  <title>Create Activity</title>
+  <input type="text" name="title" placeholder ="Activity Name">
+  <br>
+  <input type="text" name="city" placeholder ="City">
+  <br>
+  <input type="radio" name="cost" value="$">$
+  <input type="radio" name="cost" value="$$">$$
+  <input type="radio" name="cost" value="$$$">$$$
+  <br>
+  <select name="category">
+    <option selected disabled>Category</option>
+    <option>Food</option>
+    <option>Extreme</option>
+    <option>Sport</option>
+    <option>Park</option>
+    <option>Event</option>
+    <option>Nightlife</option>
+    <option>Other</option>
+  </select>
+  <br>
+  <textarea placeholder ="comment" name="comment"></textarea>
+  <br>
+  <select name="rating">
+    <option selected disabled>Rating</option>
+    <option>★★★★★</option>
+    <option>★★★★</option>
+    <option>★★★</option>
+    <option>★★</option>
+    <option>★</option>
+
+    
+  </select>
+  <input type="submit" value="Add Activity">
+  <br>
+ 
+  
+</form>
