@@ -1,4 +1,4 @@
 class Activity < ActiveRecord::Base
-  validates :category, :rating, presence: true
+  validates :category, :rating, :title, :city, :cost, presence: true
 
 end
