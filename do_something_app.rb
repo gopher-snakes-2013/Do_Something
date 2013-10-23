@@ -54,7 +54,7 @@ post '/login' do
   else
     flash[:notice] = "Incorrect login. Please try again."  
   end
-  redirect '/'
+  redirect('/')
 end
 
 post '/signup' do
