@@ -12,7 +12,7 @@ gem 'pg'
 gem 'bcrypt-ruby'
 gem 'faker'
 
-
+gem 'json'
 
 group :development do
   gem 'shotgun'

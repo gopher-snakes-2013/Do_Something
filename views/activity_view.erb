@@ -1,0 +1,17 @@
+<h1> You are going to... </h1>
+
+<span id="activity_title">Activity: <%= @activity.title%></span>
+    <br>
+    <span id="activity_city">City: <%= @activity.city%></span>
+    <br>
+    <span id="activity_cost">Cost: <%= @activity.cost%></span>
+    <br>
+    <span id="activity_category">Cost: <%= @activity.category%></span>
+    <br>
+    <% if logged_in? %>
+      <span id="activity_comment">Comment: <%= @activity.comment%></span>
+      <br>
+    <% end %>
+    <span id="activity_rating">Rating: <%= @activity.rating%></span>
+    <br>
+    <span id="activity_created">Created: <%= @activity.created_at.getlocal.strftime("%m/%d/%Y at %l:%M%p")%></span>
