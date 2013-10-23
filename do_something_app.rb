@@ -2,25 +2,25 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'rack-flash'
 
-
 require_relative 'models/user'
 require_relative 'models/activity'
+require_relative 'helpers/sessions_helper'
 
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || "postgres://localhost/do_something_dev")
+LOCAL_DB_URL = "postgres://localhost/do_something_dev"
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || LOCAL_DB_URL)
 
-enable :sessions
 use Rack::Flash
 
+enable :sessions
+
+
 helpers do
-  def logged_in?
-    session[:user_id] ? true : false
-  end
+  include SessionsHelper
 end
 
 get '/' do
   @current_user = User.find(session[:user_id]) if logged_in?
-  flash[:log_in_error]
-  flash[:sign_up_error]
+  flash_errors
   if logged_in?
     @activities = Activity.where(user_id: @current_user)
   else
@@ -53,22 +53,14 @@ end
 
 post '/login' do
   @user = User.find_by_email(params[:sign_in_user][:email])
-  if @user && (@user.password == params[:sign_in_user][:password])
-    session[:user_id] = @user.id
-  else
-    flash[:log_in_error] = "Incorrect login. Please try again."  
-  end
+  verify_login(@user)
   redirect('/')
 end
 
 post '/signup' do
   user = User.new(params[:user])
   user.password = params[:user][:password]
-  if user.save
-    session[:user_id] = user.id
-  else
-    flash[:sign_up_error] = user.errors.messages
-  end
+  verify_user_create(user)
   redirect('/')
 end
 
@@ -78,9 +70,7 @@ get '/logout' do
 end
 
 post '/delete/:id' do
-  if logged_in?
-    lame_activity = Activity.find(params[:id])
-    lame_activity.destroy
-  end
+  lame_activity = Activity.find(params[:id])
+  lame_activity.destroy
   redirect '/'
 end
