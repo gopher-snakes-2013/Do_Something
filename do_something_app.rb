@@ -1,12 +1,21 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'rack-flash'
+require 'dotenv'
+require 'omniauth/facebook'
+require 'Devise'
 
+Dotenv.load
 
 require_relative 'models/user'
 require_relative 'models/activity'
 
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || "postgres://localhost/do_something_dev")
+
+use OmniAuth::Builder do
+  provider :facebook, ENV['APP_ID'], ENV['APP_SECRET']
+end
+
 
 enable :sessions
 use Rack::Flash
@@ -56,7 +65,7 @@ post '/login' do
   if @user && (@user.password == params[:sign_in_user][:password])
     session[:user_id] = @user.id
   else
-    flash[:log_in_error] = "Incorrect login. Please try again."  
+    flash[:log_in_error] = "Incorrect login. Please try again."
   end
   redirect('/')
 end
@@ -83,4 +92,50 @@ post '/delete/:id' do
     lame_activity.destroy
   end
   redirect '/'
+end
+
+get '/auth/facebook/callback' do
+  facebook_user = {}
+  facebook_user[:email] = request.env['omniauth.auth']['info'].email
+  facebook_user[:first_name] = request.env['omniauth.auth']['info'].first_name
+  facebook_user[:facebook_id] = request.env['omniauth.auth'].uid
+
+  current_facebook_user = User.find_by_email(facebook_user[:email])
+
+  if current_facebook_user
+    if User.find_by_facebook_id(facebook_user[:facebook_id])
+      session[:user_id] = current_facebook_user.id
+    else
+      current_facebook_user.facebook_id = facebook_user[:facebook_id]
+      current_facebook_user.save
+      session[:user_id] = current_facebook_user.id
+    end
+  else
+    new_user = User.new(current_facebook_user)
+    new_user[:password_hash] = Devise.friendly_token
+    new_user.save
+    session[:user_id] = new_user.id
+  end
+
+
+  # fb_user = User.find_by_email(
+
+  # p request.env['omniauth.auth']['info'].email
+  # p request.env['omniauth.auth']['info'].first_name
+  # p request.env['omniauth.auth'].uid
+
+  # User.find_by_email()
+
+  # if user email exists
+  #   if uid exists
+  #     login
+  #   else
+  #     add facebook uid to user
+  #     login
+  #   end
+  # else
+  #   add name email fake password and facebook uid to site
+  #   login
+  # end
+  redirect('/')
 end

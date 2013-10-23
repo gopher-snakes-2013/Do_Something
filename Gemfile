@@ -11,6 +11,8 @@ gem 'sinatra-activerecord'
 gem 'pg'
 gem 'bcrypt-ruby'
 gem 'faker'
+gem 'omniauth-facebook'
+gem 'dotenv'
 
 
 
