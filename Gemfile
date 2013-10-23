@@ -15,5 +15,5 @@ gem 'bcrypt-ruby'
 
 group :development do
   gem 'shotgun'
-
+  gem 'shoulda-matchers'
 end

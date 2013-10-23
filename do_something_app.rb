@@ -35,6 +35,7 @@ end
 
 post '/activities' do
   new_activity = Activity.new(params)
+  new_activity.user_id = session[:user_id]
   if new_activity.save
     redirect('/')
   else

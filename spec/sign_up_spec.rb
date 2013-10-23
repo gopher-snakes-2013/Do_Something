@@ -31,7 +31,6 @@ feature "User can sign up" do
 
 
   after :all do
-    users = User.all
-    users.each {|user| user.destroy}
+    User.last.destroy
   end
 end
