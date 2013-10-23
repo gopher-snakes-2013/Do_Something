@@ -1,12 +1,20 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'rack-flash'
+require 'dotenv'
+require 'omniauth-facebook'
 
+
+Dotenv.load
 
 require_relative 'models/user'
 require_relative 'models/activity'
 
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || "postgres://localhost/do_something_dev")
+
+use OmniAuth::Builder do
+  provider :facebook, ENV['APP_ID'], ENV['APP_SECRET']
+end
 
 enable :sessions
 use Rack::Flash
@@ -56,7 +64,7 @@ post '/login' do
   if @user && (@user.password == params[:sign_in_user][:password])
     session[:user_id] = @user.id
   else
-    flash[:log_in_error] = "Incorrect login. Please try again."  
+    flash[:log_in_error] = "Incorrect login. Please try again."
   end
   redirect('/')
 end
@@ -83,4 +91,10 @@ post '/delete/:id' do
     lame_activity.destroy
   end
   redirect '/'
+end
+
+get '/auth/facebook/callback' do
+  p request.env['omniauth.auth'].uid
+  # User.find_by_facebook()
+  redirect('/')
 end

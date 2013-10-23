@@ -1,1 +1,2 @@
-*.lock
+Gemfile.lock
+.env
