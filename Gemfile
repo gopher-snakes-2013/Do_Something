@@ -16,5 +16,5 @@ gem 'faker'
 
 group :development do
   gem 'shotgun'
-
+  gem 'shoulda-matchers'
 end

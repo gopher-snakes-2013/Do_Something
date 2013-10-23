@@ -19,6 +19,9 @@ end
 
 get '/' do
   @current_user = User.find(session[:user_id]) if logged_in?
+  flash[:log_in_error]
+  flash[:sign_up_error]
+  @recent_activities = Activity.last(5)
   erb :index
 end
 
@@ -35,6 +38,7 @@ end
 
 post '/activities' do
   new_activity = Activity.new(params)
+  new_activity.user_id = session[:user_id]
   if new_activity.save
     redirect('/')
   else
@@ -47,17 +51,20 @@ post '/login' do
   @user = User.find_by_email(params[:sign_in_user][:email])
   if @user && (@user.password == params[:sign_in_user][:password])
     session[:user_id] = @user.id
-    redirect '/'
   else
-    redirect '/'
+    flash[:log_in_error] = "Incorrect login. Please try again."  
   end
+  redirect('/')
 end
 
 post '/signup' do
   user = User.new(params[:user])
   user.password = params[:user][:password]
-  user.save!
-  session[:user_id] = user.id
+  if user.save
+    session[:user_id] = user.id
+  else
+    flash[:sign_up_error] = user.errors.messages
+  end
   redirect('/')
 end
 

@@ -5,23 +5,59 @@
   <a href="/activities/new">Create an activity</a><br/>
   <a href="/logout">Logout</a>
 <% else %>
+  
+  <div class="recent_activities">
+    <h2>Recently Added:</h2>
+    <% @recent_activities.reverse.each do |activity| %>
+      <p class="recent_activity_item">
+        <span id="activity_title">Activity: <%= activity.title %></span>
+        <br/>
+        <span id="activity_city">City: <%= activity.city %></span>
+        <br/>
+        <span id="activity_category">Category: <%= activity.category %></span>
+        <br/>
+        <span id="activity_cost">Cost: <%= activity.cost %></span>
+        <br/>
+        <span id="activity_rating">Rating: <%= activity.rating %></span>
+        <br/>
+      </p>
+    <% end %>
+  </div>
+
   <div>
     <h2>Sign In</h2>
+    
     <form method="post" action="/login">
 
-      <label>User Email: <input type="text" name="sign_in_user[email]" placeholder="User Email"></label><br/>
-      <label>User Password: <input type="password" name="sign_in_user[password]" placeholder="User Password"></label><br/>
+      <label>User Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="sign_in_user[email]" placeholder="User Email" required></label >
+      <br/>
+      <label>User Password: <input type="password" name="sign_in_user[password]" placeholder="User Password" required></label>
+      <br/>
       <input type="submit" value="Sign In">
+      <div class="error_message">
+        <% if flash[:log_in_error] %>
+          <%= flash[:log_in_error] %>
+        <% end %>
+      </div>
     </form>
   </div>
 
   <div>
     <h2>Sign Up</h2>
     <form method="post" action="/signup">
-      <label>First Name: <input type="text" name="user[first_name]" placeholder="First Name"></label><br/>
-      <label>Email: <input type="text" name="user[email]" placeholder="Email"></label><br/>
-      <label>Password: <input type="password" name="user[password]" placeholder="Password"></label><br/>
+      <label>First Name: <input type="text" name="user[first_name]" placeholder="First Name" required></label><br/>
+      <label>Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="user[email]" placeholder="Email" required></label>
+      <br/>
+      <label>Password: <input type="password" name="user[password]" placeholder="Password" required></label>
+      <br/>
       <input type="submit" value="Sign Up">
+      <div class="error_message">
+        <% if flash[:sign_up_error] %>
+          <% flash[:sign_up_error].each do |k, v| %>
+            <%= "#{k.capitalize} #{v[0]}!" %><br/>
+          <% end %>
+        <% end %>
+      </div>
     </form>
   </div>
 <% end %>
