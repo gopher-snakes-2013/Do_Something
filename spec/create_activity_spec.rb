@@ -24,7 +24,7 @@ feature "the create activity page" do
   end
 
   scenario "expect error if activity title not filled in" do
-    visit('/create_activity')
+    visit('/activities/new')
     fill_in("city", with: "go bowling")
     choose('low_cost')
     select("Extreme", from: "category")
@@ -35,8 +35,8 @@ feature "the create activity page" do
   end
 
   after(:each) do
-    users = User.all
-    users.each {|user| user.destroy}
+    User.last.destroy
+    visit "/logout"
   end
 
 end
