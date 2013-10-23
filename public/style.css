@@ -1,0 +1,108 @@
+body {
+  background: url("http://miriadna.com/desctopwalls/images/max/Ideal-landscape.jpg");
+  background-size: cover;
+  margin: 0 auto;
+  max-width: 650px;
+  font-family: helvetica, sans-serif;
+}
+
+div{
+  text-align: left;
+  background-color:rgba(255,255,255,0.5);
+  border-radius: 12px;
+  padding: 10px 20px 10px 20px;
+}
+h1 {
+  font-family: 'Neuton', serif;
+  text-align: center;
+  font-size: 50px;
+  margin-top: 40px 30px;
+}
+.recent_activity_item {
+  background-color:rgba(255,255,255,0.5);
+  height: 140px;
+  border-radius: 12px;
+  padding: 10px 20px 10px 20px;
+}
+
+#sign_in {
+  float: left
+}
+
+#sign_up{
+  float:right;
+}
+
+
+
+/*
+
+
+h2 {
+  text-align: center;
+  color: #bbbbbb;
+  margin: 0px 0 70px 0;
+}
+p {
+  color: rgba(255,255,255,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url("http://dash.ga.co/assets/firstcourse.jpg");
+}
+.second{
+  background-image: url("http://dash.ga.co/assets/secondcourse.jpg");
+}
+.dessert{
+  background-image: url("http://dash.ga.co/assets/dessertcourse.jpg");
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}*/
