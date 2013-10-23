@@ -21,7 +21,11 @@ get '/' do
   @current_user = User.find(session[:user_id]) if logged_in?
   flash[:log_in_error]
   flash[:sign_up_error]
-  @recent_activities = Activity.last(5)
+  if logged_in?
+    @activities = Activity.where(user_id: @current_user)
+  else
+    @activities = Activity.last(5)
+  end
   erb :index
 end
 
