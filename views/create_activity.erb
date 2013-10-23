@@ -1,13 +1,23 @@
 <h2>Remember an Activity</h2>
+
+<div id="error_messages">
+  <% if @errors %>
+    Oops!<br/>
+    <% @errors.each do |k, v| %>
+      <%="#{k.capitalize} #{v[0]}!" %><br/>
+    <% end %>
+  <% end%>
+</div>
+
 <form method="POST" action="/create_activity">
   <title>Create Activity</title>
   <input type="text" name="title" placeholder ="Activity Name">
   <br>
   <input type="text" name="city" placeholder ="City">
   <br>
-  <input type="radio" name="cost" value="$">$
-  <input type="radio" name="cost" value="$$">$$
-  <input type="radio" name="cost" value="$$$">$$$
+  <input type="radio" name="low_cost" value="$">$
+  <input type="radio" name="med_cost" value="$$">$$
+  <input type="radio" name="high_cost" value="$$$">$$$
   <br>
   <select name="category">
     <option selected disabled>Category</option>
@@ -24,15 +34,16 @@
   <br>
   <select name="rating">
     <option selected disabled>Rating</option>
-    <option>★★★★★</option>
-    <option>★★★★</option>
-    <option>★★★</option>
-    <option>★★</option>
-    <option>★</option>
+    <option id="5_stars">5</option>
+    <option id="4_stars">4</option>
+    <option id="3_stars">3</option>
+    <option id="2_stars">2</option>
+    <option id="1_stars">1</option>
 
     
   </select>
   <input type="submit" value="Add Activity">
+
   <br>
  
   

@@ -1,11 +1,15 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'rack-flash'
+
+
 require_relative 'models/user'
 require_relative 'models/activity'
 
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || "postgres://localhost/do_something_dev")
 
 enable :sessions
+use Rack::Flash
 
 helpers do
   def logged_in?
@@ -20,15 +24,23 @@ end
 
 get '/create_activity' do
   if logged_in?
+    if flash[:notice]
+      @errors = flash[:notice]
+    end
     erb :create_activity
   else
-    redirect '/'
+    redirect('/')
   end
 end
 
 post '/create_activity' do
-  Activity.create(params) if logged_in?
-  redirect '/'
+  new_activity = Activity.new(params)
+  if new_activity.save
+    redirect('/')
+  else
+    flash[:notice] = new_activity.errors.messages
+    redirect('/create_activity')
+  end
 end
 
 post '/signin' do
