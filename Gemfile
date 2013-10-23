@@ -9,6 +9,7 @@ gem 'rack-flash3'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'pg'
+gem 'bcrypt-ruby'
 
 
 

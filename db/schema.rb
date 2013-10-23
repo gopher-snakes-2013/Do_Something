@@ -9,3 +9,29 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 20131022021925) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "activities", force: true do |t|
+    t.string   "title"
+    t.string   "city"
+    t.string   "cost"
+    t.string   "category"
+    t.string   "comment"
+    t.string   "rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "first_name"
+    t.string   "email"
+    t.string   "password_hash"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+end

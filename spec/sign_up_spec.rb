@@ -20,7 +20,17 @@ feature "User can sign up" do
     expect(page).to_not have_content("Welcome, Steven")
   end
 
-  after :each do
+  scenario "enter user account information" do
+    visit "/"
+    fill_in("User Email", with: "steven@example.com")
+    fill_in("User Password", with: "password")
+    click_button("Sign In")
+
+    expect(page).to have_content("Welcome, Steven")
+  end
+
+
+  after :all do
     users = User.all
     users.each {|user| user.destroy}
   end
