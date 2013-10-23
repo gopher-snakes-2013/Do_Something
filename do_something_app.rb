@@ -76,3 +76,11 @@ get '/logout' do
   session.clear
   redirect('/')
 end
+
+post '/delete/:id' do
+  if logged_in?
+    lame_activity = Activity.find(params[:id])
+    lame_activity.destroy
+  end
+  redirect '/'
+end

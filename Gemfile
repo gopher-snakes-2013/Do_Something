@@ -10,6 +10,7 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'pg'
 gem 'bcrypt-ruby'
+gem 'faker'
 
 
 
