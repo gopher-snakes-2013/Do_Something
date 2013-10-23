@@ -22,7 +22,7 @@ get '/' do
   erb :index
 end
 
-get '/create_activity' do
+get '/activities/new' do
   if logged_in?
     if flash[:notice]
       @errors = flash[:notice]
@@ -33,17 +33,17 @@ get '/create_activity' do
   end
 end
 
-post '/create_activity' do
+post '/activities' do
   new_activity = Activity.new(params)
   if new_activity.save
     redirect('/')
   else
     flash[:notice] = new_activity.errors.messages
-    redirect('/create_activity')
+    redirect('/activities/new')
   end
 end
 
-post '/signin' do
+post '/login' do
   @user = User.find_by_email(params[:sign_in_user][:email])
   if @user && (@user.password == params[:sign_in_user][:password])
     session[:user_id] = @user.id
