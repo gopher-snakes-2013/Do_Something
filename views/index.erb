@@ -70,9 +70,9 @@
     <br>
     <span id="activity_created">Created: <%=activity.created_at.getlocal.strftime("%m/%d/%Y at %l:%M%p")%></span>
     <% if logged_in? %>
-    <form method="POST" action="/delete/<%=activity.id%>">
-    <button id="delete">Delete Activity</button>
-    </form>
+      <form method="POST" action="/delete/<%=activity.id%>">
+        <button id="delete">Delete Activity</button>
+      </form>
     <% end %>
   </p>
 <%end%>
