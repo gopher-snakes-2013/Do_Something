@@ -7,11 +7,19 @@
 <% else %>
   <div>
     <h2>Sign In</h2>
+    
     <form method="post" action="/login">
 
-      <label>User Email: <input type="email" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" name="sign_in_user[email]" placeholder="User Email"></label required><br/>
-      <label>User Password: <input type="password" name="sign_in_user[password]" placeholder="User Password" required></label><br/>
+      <label>User Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="sign_in_user[email]" placeholder="User Email" required></label >
+      <br/>
+      <label>User Password: <input type="password" name="sign_in_user[password]" placeholder="User Password" required></label>
+      <br/>
       <input type="submit" value="Sign In">
+      <div class="error_message">
+        <% if @log_in_error %>
+          <%= @log_in_error %>
+        <% end %>
+      </div>
     </form>
   </div>
 
@@ -19,9 +27,18 @@
     <h2>Sign Up</h2>
     <form method="post" action="/signup">
       <label>First Name: <input type="text" name="user[first_name]" placeholder="First Name" required></label><br/>
-      <label>Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="user[email]" placeholder="Email" required></label><br/>
-      <label>Password: <input type="password" name="user[password]" placeholder="Password" required></label><br/>
+      <label>Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="user[email]" placeholder="Email" required></label>
+      <br/>
+      <label>Password: <input type="password" name="user[password]" placeholder="Password" required></label>
+      <br/>
       <input type="submit" value="Sign Up">
+      <div class="error_message">
+        <% if @sign_up_error %>
+          <% @sign_up_error.each do |k, v| %>
+            <%= "#{k.capitalize} #{v[0]}!" %><br/>
+          <% end %>
+        <% end %>
+      </div>
     </form>
   </div>
 <% end %>
