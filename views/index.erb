@@ -2,7 +2,7 @@
 
 <% if @current_user %>
   <h2>Welcome, <%= @current_user.first_name %></h2>
-  <a href="/create_activity">Create an activity</a><br/>
+  <a href="/activities/new">Create an activity</a><br/>
   <a href="/logout">Logout</a>
 <% else %>
   <div>
