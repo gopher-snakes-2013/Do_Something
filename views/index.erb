@@ -5,6 +5,25 @@
   <a href="/activities/new">Create an activity</a><br/>
   <a href="/logout">Logout</a>
 <% else %>
+  
+  <div class="recent_activities">
+    <h2>Recently Added:</h2>
+    <% @recent_activities.reverse.each do |activity| %>
+      <p class="recent_activity_item">
+        <span id="activity_title">Activity: <%= activity.title %></span>
+        <br/>
+        <span id="activity_city">City: <%= activity.city %></span>
+        <br/>
+        <span id="activity_category">Category: <%= activity.category %></span>
+        <br/>
+        <span id="activity_cost">Cost: <%= activity.cost %></span>
+        <br/>
+        <span id="activity_rating">Rating: <%= activity.rating %></span>
+        <br/>
+      </p>
+    <% end %>
+  </div>
+
   <div>
     <h2>Sign In</h2>
     
