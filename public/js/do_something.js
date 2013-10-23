@@ -11,4 +11,12 @@ $(document).ready(function(){
       alert("You don't have any activities to choose from! Please add activities.");
     });
   });
+
+  $("#go_home").on("click", function(){
+    $.ajax({
+      success: function(){
+        top.location.href = '/'
+      }
+    });
+  });
 });
