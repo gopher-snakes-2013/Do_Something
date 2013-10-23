@@ -2,8 +2,8 @@
 
 
 
-<% if @current_user %>
-  <h2>Welcome, <%= @current_user.first_name %></h2>
+<% if logged_in? %>
+  <h2>Welcome, <%= active_user.first_name %></h2>
   <a href="/activities/new">Create an activity</a><br/>
   <a href="/logout">Logout</a>
 

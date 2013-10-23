@@ -5,24 +5,24 @@ require 'rack-flash'
 
 require_relative 'models/user'
 require_relative 'models/activity'
+require_relative 'helpers/session_helper'
 
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || "postgres://localhost/do_something_dev")
+LOCAL_DATABASE_LOCATION = "postgres://localhost/do_something_dev"
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || LOCAL_DATABASE_LOCATION)
 
 enable :sessions
 use Rack::Flash
 
+
 helpers do
-  def logged_in?
-    session[:user_id] ? true : false
-  end
+  include SessionHelper
 end
 
 get '/' do
-  @current_user = User.find(session[:user_id]) if logged_in?
   flash[:log_in_error]
   flash[:sign_up_error]
   if logged_in?
-    @activities = Activity.where(user_id: @current_user)
+    @activities = Activity.where(user_id: active_user.id)
   else
     @activities = Activity.last(5)
   end
@@ -42,7 +42,7 @@ end
 
 post '/activities' do
   new_activity = Activity.new(params)
-  new_activity.user_id = session[:user_id]
+  new_activity.user_id = active_user.id
   if new_activity.save
     redirect('/')
   else
@@ -54,7 +54,7 @@ end
 post '/login' do
   @user = User.find_by_email(params[:sign_in_user][:email])
   if @user && (@user.password == params[:sign_in_user][:password])
-    session[:user_id] = @user.id
+    make_active(@user)
   else
     flash[:log_in_error] = "Incorrect login. Please try again."  
   end
@@ -65,7 +65,7 @@ post '/signup' do
   user = User.new(params[:user])
   user.password = params[:user][:password]
   if user.save
-    session[:user_id] = user.id
+    make_active(user)
   else
     flash[:sign_up_error] = user.errors.messages
   end
@@ -73,7 +73,7 @@ post '/signup' do
 end
 
 get '/logout' do
-  session.clear
+  logout
   redirect('/')
 end
 
