@@ -35,8 +35,8 @@
       <br/>
       <input type="submit" value="Sign In">
       <div class="error_message">
-        <% if @log_in_error %>
-          <%= @log_in_error %>
+        <% if flash[:log_in_error] %>
+          <%= flash[:log_in_error] %>
         <% end %>
       </div>
     </form>
@@ -52,8 +52,8 @@
       <br/>
       <input type="submit" value="Sign Up">
       <div class="error_message">
-        <% if @sign_up_error %>
-          <% @sign_up_error.each do |k, v| %>
+        <% if flash[:sign_up_error] %>
+          <% flash[:sign_up_error].each do |k, v| %>
             <%= "#{k.capitalize} #{v[0]}!" %><br/>
           <% end %>
         <% end %>

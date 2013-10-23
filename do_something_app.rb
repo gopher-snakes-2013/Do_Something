@@ -19,8 +19,8 @@ end
 
 get '/' do
   @current_user = User.find(session[:user_id]) if logged_in?
-  @log_in_error = flash[:notice]
-  @sign_up_error = flash[:sign_up_error]
+  flash[:log_in_error]
+  flash[:sign_up_error]
   @recent_activities = Activity.last(5)
   erb :index
 end
@@ -52,7 +52,7 @@ post '/login' do
   if @user && (@user.password == params[:sign_in_user][:password])
     session[:user_id] = @user.id
   else
-    flash[:notice] = "Incorrect login. Please try again."  
+    flash[:log_in_error] = "Incorrect login. Please try again."  
   end
   redirect('/')
 end
