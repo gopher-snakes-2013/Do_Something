@@ -31,8 +31,8 @@ RATING = [1,2,3,4,5]
   city = Faker::Address.city
   cost = ACTIVITY_COST.sample
   category = CATEGORY.sample
-  comment = Faker::Lorem.sentences(sentence_count=rand(1..3)).join
-  rating = RATING.sample.to_s
+  comment = Faker::Lorem.sentences(sentence_count=rand(1..3)).join(" ")
+  rating = RATING.sample
   user_id = rand(1..20)
 
   Activity.create(
