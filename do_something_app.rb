@@ -43,7 +43,7 @@ post '/activities' do
   end
 end
 
-post '/signin' do
+post '/login' do
   @user = User.find_by_email(params[:sign_in_user][:email])
   if @user && (@user.password == params[:sign_in_user][:password])
     session[:user_id] = @user.id
