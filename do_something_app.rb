@@ -101,23 +101,22 @@ post '/delete/:id' do
 end
 
 get '/auth/facebook/callback' do
-  facebook_user = {email: request.env['omniauth.auth']['info'].email,
-                   first_name: request.env['omniauth.auth']['info'].first_name,
-                   facebook_id: request.env['omniauth.auth'].uid
+  facebook_user_info = {email: request.env['omniauth.auth']['info'].email,
+                        first_name: request.env['omniauth.auth']['info'].first_name,
+                        facebook_id: request.env['omniauth.auth'].uid
                  }
 
-  current_facebook_user = User.find_by_email(facebook_user[:email])
+  current_facebook_user = User.find_by_email(facebook_user_info[:email])
 
   if current_facebook_user
-    if User.find_by_facebook_id(facebook_user[:facebook_id])
+    if User.find_by_facebook_id(facebook_user_info[:facebook_id])
       create_session(current_facebook_user.id)
     else
-      current_facebook_user.facebook_id = facebook_user[:facebook_id]
-      current_facebook_user.save
+      current_facebook_user.update(facebook_id: (facebook_user_info[:facebook_id]))
       create_session(current_facebook_user.id)
     end
   else
-    new_user = User.new(facebook_user)
+    new_user = User.new(facebook_user_info)
     new_user.password = SecureRandom.hex
     new_user.save
     create_session(new_user.id)
