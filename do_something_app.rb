@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'rack-flash'
+require 'json'
 require 'dotenv'
 require 'omniauth/facebook'
 
@@ -28,6 +29,15 @@ helpers do
 
   def create_session(user_id)
     session[:user_id] = user_id
+  end
+
+  def random_activity_id(user_id)
+    activities = Activity.where(user_id: user_id)
+    activity_id = activities.sample.id
+  end
+
+  def find_activity(id)
+    Activity.find(id)
   end
 end
 
@@ -63,6 +73,11 @@ post '/activities' do
     flash[:notice] = new_activity.errors.messages
     redirect('/activities/new')
   end
+end
+
+post '/activities/select' do
+  activity_id = random_activity_id(session[:user_id])
+  activity_id.to_json
 end
 
 post '/login' do
