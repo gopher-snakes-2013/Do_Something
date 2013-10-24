@@ -7,6 +7,8 @@ h1#title {
 	text-align: center;
 	font-size: 3em;
 	font-weight: bold;
+	color: #3F6299;
+	margin-bottom: 50px;
 }
 
 #log-in-sign-up-container {
@@ -46,7 +48,15 @@ h3#facebook {
 }
 
 .activity-feed h2 {
+	font-family: 'Righteous', cursive;
 	text-align: center;
+	color: #3F6299;
+}
+
+.recent_activity_item {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 p.recent_activity_item {
@@ -57,5 +67,10 @@ p.recent_activity_item {
 
 #activity_title {
 	font-weight: bold;
+}
+
+#activity_created {
+	font-size: 10px;
+	font-style: italic;
 }
 
