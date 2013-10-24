@@ -13,6 +13,7 @@ gem 'bcrypt-ruby'
 gem 'faker'
 gem 'omniauth-facebook'
 gem 'dotenv'
+gem 'devise'
 
 
 
