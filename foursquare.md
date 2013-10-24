@@ -1,6 +1,8 @@
+https://developer.foursquare.com/
+
 Userless Venue Search or Explore Requests
 
-Do not require OAuth. 
+Does not require OAuth. 
 
 Search Venues - returns a list of venues matching a search term.
 Can use "near" parameter to include a city/state. 
