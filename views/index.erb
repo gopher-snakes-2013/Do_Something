@@ -1,4 +1,4 @@
-<h1>Welcome to Do Something!</h1>
+<h1 id="title">Welcome to Do Something!</h1>
 
 
 
@@ -8,75 +8,84 @@
   <a href="/logout">Logout</a>
 
 <% else %>
-  <div>
-    <h3><a href="/auth/facebook">Do Something with Facebook</a></h3>
-    <h2>Sign In</h2>
-
-    <form method="post" action="/login">
-
-      <label>User Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="sign_in_user[email]" placeholder="User Email" required></label >
-      <br/>
-      <label>User Password: <input type="password" name="sign_in_user[password]" placeholder="User Password" required></label>
-      <br/>
-      <input type="submit" value="Sign In">
-      <div class="error_message">
-        <% if flash[:log_in_error] %>
-          <%= flash[:log_in_error] %>
-        <% end %>
+  <div id="log-in-sign-up-container">
+    <div>
+      
+      <div id="facebook-login">
+        <img id="facebook-logo" src="/images/fb.png">
+        <h3 id="facebook"><a href="/auth/facebook" alt="facebook logo" id="facebook-logo">Do Something with Facebook</h3></a>
       </div>
-    </form>
-  </div>
 
-  <div>
-    <h2>Sign Up</h2>
-    <form method="post" action="/signup">
-      <label>First Name: <input type="text" name="user[first_name]" placeholder="First Name" required></label><br/>
-      <label>Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="user[email]" placeholder="Email" required></label>
-      <br/>
-      <label>Password: <input type="password" name="user[password]" placeholder="Password" required></label>
-      <br/>
-      <input type="submit" value="Sign Up">
-      <div class="error_message">
-        <% if flash[:sign_up_error] %>
-          <% flash[:sign_up_error].each do |k, v| %>
-            <%= "#{k.capitalize} #{v[0]}!" %><br/>
-          <% end %>
-        <% end %>
+      <div id="sign-in-sign-up">
+        <h2>Sign In</h2>
+        <form method="post" action="/login" class="sign-in-sign-up">
+          <label>User Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="sign_in_user[email]" placeholder="User Email" required></label >
+          <br/>
+          <label>User Password: <input type="password" name="sign_in_user[password]" placeholder="User Password" required></label>
+          <br/>
+          <input type="submit" value="Sign In">
+          <div class="error_message">
+            <% if flash[:log_in_error] %>
+              <%= flash[:log_in_error] %>
+            <% end %>
+          </div>
+        </form>
+        <h2>Sign Up</h2>
+        <form method="post" action="/signup" class="sign-in-sign-up">
+          <label>First Name: <input type="text" name="user[first_name]" placeholder="First Name" required></label><br/>
+          <label>Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="user[email]" placeholder="Email" required></label>
+          <br/>
+          <label>Password: <input type="password" name="user[password]" placeholder="Password" required></label>
+          <br/>
+          <input type="submit" value="Sign Up">
+          <div class="error_message">
+            <% if flash[:sign_up_error] %>
+              <% flash[:sign_up_error].each do |k, v| %>
+                <%= "#{k.capitalize} #{v[0]}!" %><br/>
+              <% end %>
+            <% end %>
+          </div>
+        </form>
       </div>
-    </form>
+
+
+    </div>
   </div>
 <% end %>
 
 <% if logged_in? %>
-  <h2>Your Activities</h2>
-  <button id="select_random">select random</button>
+<div class="activity-feed">
+    <h2>Your Activities</h2>
+    <button id="select_random">select random</button>
 <% else %>
-  <h2>Recent Activity</h2>
+  <div class="activity-feed">
+    <h2>Recent Activity</h2>
 <% end %>
 
-<% @activities.reverse.each do |activity| %>
-  <div class= "activity" id="activity_<%= activity.id %>">
-  <p class="recent_activity_item">
-    <span id="activity_title">Activity: <%=activity.title%></span>
-    <br>
-    <span id="activity_city">City: <%=activity.city%></span>
-    <br>
-    <span id="activity_cost">Cost: <%=activity.cost%></span>
-    <br>
-    <span id="activity_category">Cost: <%=activity.category%></span>
-    <br>
-    <% if logged_in? %>
-      <span id="activity_comment">Comment: <%=activity.comment%></span>
+  <% @activities.reverse.each do |activity| %>
+    <div class= "activity" id="activity_<%= activity.id %>">
+    <p class="recent_activity_item">
+      <span id="activity_title">Activity: <%=activity.title%></span>
       <br>
-    <% end %>
-    <span id="activity_rating">Rating: <%=activity.rating%></span>
-    <br>
-    <span id="activity_created">Created: <%=activity.created_at.getlocal.strftime("%m/%d/%Y at %l:%M%p")%></span>
-  </div>
-    <% if logged_in? %>
-      <form method="POST" action="/delete/<%=activity.id%>">
-        <button id="delete">Delete Activity</button>
-      </form>
-    <% end %>
-  </p>
-<%end%>
+      <span id="activity_city">City: <%=activity.city%></span>
+      <br>
+      <span id="activity_cost">Cost: <%=activity.cost%></span>
+      <br>
+      <span id="activity_category">Cost: <%=activity.category%></span>
+      <br>
+      <% if logged_in? %>
+        <span id="activity_comment">Comment: <%=activity.comment%></span>
+        <br>
+      <% end %>
+      <span id="activity_rating">Rating: <%=activity.rating%></span>
+      <br>
+      <span id="activity_created">Created: <%=activity.created_at.getlocal.strftime("%m/%d/%Y at %l:%M%p")%></span>
+    </div>
+      <% if logged_in? %>
+        <form method="POST" action="/delete/<%=activity.id%>">
+          <button id="delete">Delete Activity</button>
+        </form>
+      <% end %>
+    </p>
+  <%end%>
+</div>

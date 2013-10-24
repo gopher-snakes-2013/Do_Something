@@ -1,0 +1,61 @@
+body {
+	background-color: #F0F0F0;
+}
+
+h1#title {
+	font-family: 'Righteous', cursive;
+	text-align: center;
+	font-size: 3em;
+	font-weight: bold;
+}
+
+#log-in-sign-up-container {
+	background-color: white;
+	display: inline-block;
+	padding: 20px;
+	border-radius: 5px;
+	margin-left: 25px;
+}
+
+
+img#facebook-logo {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+h3#facebook {
+	text-align: center;
+	margin: 2px;
+	font-size: .75em;
+}
+
+#sign-in-sign-up h2 {
+	font-size: 1.25em;
+	margin-bottom: 2px;
+}
+
+.sign-in-sign-up label {
+	font-size: 10pt;
+}
+
+.activity-feed {
+	display: inline;
+	float: right;
+	margin-right: 200px;
+}
+
+.activity-feed h2 {
+	text-align: center;
+}
+
+p.recent_activity_item {
+	background-color: white;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+#activity_title {
+	font-weight: bold;
+}
+
