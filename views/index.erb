@@ -48,11 +48,13 @@
 
 <% if logged_in? %>
   <h2>Your Activities</h2>
+  <button id="select_random">select random</button>
 <% else %>
   <h2>Recent Activity</h2>
 <% end %>
 
 <% @activities.reverse.each do |activity| %>
+  <div class= "activity" id="activity_<%= activity.id %>">
   <p class="recent_activity_item">
     <span id="activity_title">Activity: <%=activity.title%></span>
     <br>
@@ -69,6 +71,7 @@
     <span id="activity_rating">Rating: <%=activity.rating%></span>
     <br>
     <span id="activity_created">Created: <%=activity.created_at.getlocal.strftime("%m/%d/%Y at %l:%M%p")%></span>
+  </div>
     <% if logged_in? %>
       <form method="POST" action="/delete/<%=activity.id%>">
         <button id="delete">Delete Activity</button>
