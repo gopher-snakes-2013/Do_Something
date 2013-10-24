@@ -2,21 +2,15 @@ $(document).ready(function(){
   $("#select_random").on("click", function(){
     $.ajax({
       url: "activities/select",
-      type: "post",
+      type: "post", 
       success: function(activity_id){
-        top.location.href = '/activities/' + activity_id
-      }
+
+      $(".activity").css("background-color", "white");
+      $("#activity_"+activity_id).css("background-color", "lightblue");
+    }
     })
     .fail(function(){
       alert("You don't have any activities to choose from! Please add activities.");
-    });
-  });
-
-  $("#go_home").on("click", function(){
-    $.ajax({
-      success: function(){
-        top.location.href = '/'
-      }
     });
   });
 });

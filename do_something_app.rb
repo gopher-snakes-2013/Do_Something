@@ -66,11 +66,6 @@ post '/activities/select' do
   activity_id.to_json
 end
 
-get '/activities/:id' do
-  @activity = find_activity(params[:id])
-  erb :activity_view
-end
-
 post '/login' do
   @user = User.find_by_email(params[:sign_in_user][:email])
   if @user && (@user.password == params[:sign_in_user][:password])
