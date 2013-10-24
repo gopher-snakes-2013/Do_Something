@@ -9,7 +9,9 @@ Dotenv.load
 require_relative 'models/user'
 require_relative 'models/activity'
 
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || "postgres://localhost/do_something_dev")
+LOCAL_DATABASE_LOCATION = 'postgres://localhost/do_something_dev'
+
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || LOCAL_DATABASE_LOCATION)
 
 use OmniAuth::Builder do
   provider :facebook, ENV['APP_ID'], ENV['APP_SECRET']
