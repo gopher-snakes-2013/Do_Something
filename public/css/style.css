@@ -74,3 +74,11 @@ p.recent_activity_item {
 	font-style: italic;
 }
 
+#user-control-panel {
+	background-color: white;
+	display: inline-block;
+	padding: 20px;
+	border-radius: 5px;
+	margin-left: 25px;
+}
+
