@@ -1,82 +1,96 @@
-<h1>Welcome to Do Something!</h1>
+<header>
+  <h1>Welcome to Do Something!</h1>
+</header>
 
-
-
-<% if @current_user %>
-  <h3>Welcome, <%= @current_user.first_name %></h3>
-  <a href="/activities/new">Create an activity</a><br/>
-  <a href="/logout">Logout</a>
-
-<% else %>
-  <div>
-    <h3><a href="/auth/facebook">Do Something with Facebook</a></h3>
-    <h2>Sign In</h2>
-
-    <form method="post" action="/login">
-
-      <label>User Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="sign_in_user[email]" placeholder="User Email" required></label >
-      <br/>
-      <label>User Password: <input type="password" name="sign_in_user[password]" placeholder="User Password" required></label>
-      <br/>
-      <input type="submit" value="Sign In">
-      <div class="error_message">
-        <% if flash[:log_in_error] %>
-          <%= flash[:log_in_error] %>
-        <% end %>
-      </div>
-    </form>
-  </div>
-
-  <div>
-    <h2>Sign Up</h2>
-    <form method="post" action="/signup">
-      <label>First Name: <input type="text" name="user[first_name]" placeholder="First Name" required></label><br/>
-      <label>Email: <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="user[email]" placeholder="Email" required></label>
-      <br/>
-      <label>Password: <input type="password" name="user[password]" placeholder="Password" required></label>
-      <br/>
-      <input type="submit" value="Sign Up">
-      <div class="error_message">
-        <% if flash[:sign_up_error] %>
-          <% flash[:sign_up_error].each do |k, v| %>
-            <%= "#{k.capitalize} #{v[0]}!" %><br/>
-          <% end %>
-        <% end %>
-      </div>
-    </form>
-  </div>
-<% end %>
-
-<% if logged_in? %>
-  <h2>Your Activities</h2>
-  <button id="select_random">select random</button>
-<% else %>
-  <h2>Recent Activity</h2>
-<% end %>
-
-<% @activities.reverse.each do |activity| %>
-  <div class= "activity" id="activity_<%= activity.id %>">
-  <p class="recent_activity_item">
-    <span id="activity_title">Activity: <%=activity.title%></span>
-    <br>
-    <span id="activity_city">City: <%=activity.city%></span>
-    <br>
-    <span id="activity_cost">Cost: <%=activity.cost%></span>
-    <br>
-    <span id="activity_category">Cost: <%=activity.category%></span>
-    <br>
-    <% if logged_in? %>
-      <span id="activity_comment">Comment: <%=activity.comment%></span>
+<div id="container">
+  <div id="login_and_signup">
+    <% if @current_user %>
+      <h2>Welcome, <%= @current_user.first_name %></h2>
+      <a href="/activities/new">Create an activity</a><br/>
+      <a href="/logout">Logout</a>
       <br>
-    <% end %>
-    <span id="activity_rating">Rating: <%=activity.rating%></span>
-    <br>
-    <span id="activity_created">Created: <%=activity.created_at.getlocal.strftime("%m/%d/%Y at %l:%M%p")%></span>
-  </div>
-    <% if logged_in? %>
-      <form method="POST" action="/delete/<%=activity.id%>">
-        <button id="delete">Delete Activity</button>
+      <button id="select_random">select random</button>
+
+    <% else %>
+      <div id="sign_in" class="enter_site">
+        <h3><a href="/auth/facebook">Sign Up or Login with Facebook</a></h3>
+        <h3>Sign In</h3>
+        <form class="sign_id_form" method="post" action="/login">
+          <h5>User Email:</h5>
+          <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="sign_in_user[email]" placeholder="User Email" required>
+          <h5>User Password:</h5>
+          <input type="password" name="sign_in_user[password]" placeholder="User Password" required>
+          <br>
+          <input class="submit" type="submit" value="Sign In">
+        <div class="error_message">
+          <% if flash[:log_in_error] %>
+            <%= flash[:log_in_error] %>
+          <% end %>
+        </div>
       </form>
+    </div>
+
+      <div id="sign_up" class="enter_site">
+        <h3>Sign Up</h3>
+        <form method="post" action="/signup">
+          <h5>First Name:</h5>
+          <input type="text" name="user[first_name]" placeholder="First Name" required>
+          <h5>Email:</h5>
+          <input type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="user[email]" placeholder="Email" required>
+          <h5>Password:</h5>
+          <input type="password" name="user[password]" placeholder="Password" required>
+          <br>
+          <input class="submit" type="submit" value="Sign Up">
+          <div class="error_message">
+            <% if flash[:sign_up_error] %>
+              <% flash[:sign_up_error].each do |k, v| %>
+              <%= "#{k.capitalize} #{v[0]}!" %><br/>
+              <% end %>
+            <% end %>
+          </div>
+        </form>
+      </div>
     <% end %>
-  </p>
-<%end%>
+  </div>  
+  
+  <div id="listed_activities">
+    <% if logged_in? %>
+      <div class="sub_title"><h2>Your Activities</h2></div>
+    <% else %>
+      <div class="sub_title"><h2>Recently Posted Activities</h2></div>
+    <% end %>
+      <% @activities.reverse.each do |activity| %>
+        <ul class="activity_pieces" id="activity_<%=activity.id%>">
+          <li>Activity: 
+            <small><%=activity.title%></small>
+          </li>
+          <li>City: 
+            <small><%=activity.city%></small>
+          </li>
+          <li>Cost: 
+            <small><%=activity.cost%></small>
+          </li>
+          <li>Category: 
+            <small><%=activity.category%></small>
+          </li>
+          <% if logged_in? %>
+            <li>Comment: 
+              <small><%=activity.comment%></small>
+            </li>
+          <% end %>
+          <li>Rating: 
+            <small><%=activity.rating%></small>
+          </li>
+          <br>
+          <li>Created:
+            <small><%=activity.created_at.getlocal.strftime("%m/%d/%Y at %l:%M%p")%></small>
+          </li>
+          <% if logged_in? %>
+            <form method="POST" action="/delete/<%=activity.id%>">
+              <button id="delete">Delete Activity</button>
+            </form>
+          <% end %>
+        </ul>
+      <%end%> 
+  </div>
+</div>

@@ -1,0 +1,146 @@
+body {
+  background-image: url('/img/background-harry.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  font-family: 'Neuton', serif;
+}
+
+li {
+  line-height: 14px;
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+
+ul{
+  height: auto;
+  background-color:rgba(255,255,255,0.7);
+  border-radius: 12px;
+  list-style-type:none;
+  position: inline;
+  margin: auto;
+}
+
+input{
+  border-radius: 3px;
+  border: 1px solid;
+  height: 20px;
+  width: 140px;
+  padding: 3px;
+  box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+  margin: 2px;
+}
+
+textarea { 
+  width: 400px;
+  max-width: 400px;
+  height: 150px;
+  line-height: 150%;
+  border-radius: 3px;
+  margin: 2px;
+}
+
+h1 {
+  font-family: 'Neuton', serif;
+  text-align: center;
+  font-size: 50px;
+  margin: 48px 60px 0px 60px;
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  border-radius: 10px;
+} 
+
+h2{
+  font-family: 'Neuton', serif;
+  text-align: center;
+  font-size: 35px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  border-radius: 10px;
+}
+
+h3{
+  font-family: 'Neuton', serif;
+  font-size: 20px;
+  margin-bottom: -5px;
+}
+
+h5{
+  font-family: 'Neuton', serif;
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+
+a {
+  font-size: 20px;
+}
+
+.radio {
+  width: 10px;
+}
+
+#activities{
+  width: 100%;
+  margin: 0 auto;
+}
+
+#container {
+  margin: 0 auto;
+  max-width: 650px;
+  background-color: transparent !important;
+}
+
+#listed_activities{
+  margin: 0 auto;
+  display:inline-block;
+  width: 100%;
+}
+
+#sign_up {
+  width: 40%;
+  text-align: left;
+  float: right;
+  padding-left: 10px;
+}
+
+#sign_in {
+  width: 40%;
+  text-align: left;
+  float: left; 
+  padding-left: 70px;
+} 
+
+#create_activity_form{
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.activity_pieces{
+  font-family: 'Neuton', serif;
+  font-size: 20px;
+  float: left;
+  width: 35%;
+  margin-left: 2.3em;
+  padding: 10px;
+  margin-bottom: 1em;
+}
+
+.submit{
+  margin-top: 6px;
+  background-color: default;
+}
+
+small{
+  font-size: 14px;
+}
+
+@media screen and (max-width: 600px) {
+  .activity_pieces {
+    width: 80%;
+    margin-left: 10%;
+    display: block;
+  }
+}
+
