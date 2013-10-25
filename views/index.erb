@@ -10,6 +10,7 @@
       <a href="/logout">Logout</a>
     <% else %>
       <div id="sign_in" class="enter_site">
+        <h3><a href="/auth/facebook">Do Something with Facebook</a></h3>
         <h3>Sign In</h3>
         <form class="sign_id_form" method="post" action="/login">
           <h5>User Email:</h5>
@@ -23,8 +24,8 @@
             <%= flash[:log_in_error] %>
           <% end %>
         </div>
-        </form>
-      </div>
+      </form>
+    </div>
 
       <div id="sign_up" class="enter_site">
         <h3>Sign Up</h3>
@@ -55,7 +56,6 @@
     <% else %>
       <div class="sub_title"><h2>Recently Posted Activities</h2></div>
     <% end %>
-    <!-- <div id="activities"> -->
       <% @activities.reverse.each do |activity| %>
         <ul class="activity_pieces">
           <li>Activity: 
@@ -89,6 +89,5 @@
           <% end %>
         </ul>
       <%end%> 
-    <!-- </div> -->
   </div>
 </div>
