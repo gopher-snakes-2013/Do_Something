@@ -1,5 +1,5 @@
 <h2>Remember an Activity</h2>
-
+<br>
 <div id="error_messages">
   <% if @errors %>
     Oops!<br/>
@@ -9,42 +9,37 @@
   <% end%>
 </div>
 
-<form method="POST" action="/activities">
-  <title>Create Activity</title>
-  <input type="text" name="title" placeholder ="Activity Name">
-  <br>
-  <input type="text" name="city" placeholder ="City">
-  <br>
-  <input type="radio" name="cost" id="low_cost" value="$">$
-  <input type="radio" name="cost" id="med_cost" value="$$">$$
-  <input type="radio" name="cost" id="high_cost" value="$$$">$$$
-  <br>
-  <select name="category">
-    <option selected disabled>Category</option>
-    <option>Food</option>
-    <option>Extreme</option>
-    <option>Sport</option>
-    <option>Park</option>
-    <option>Event</option>
-    <option>Nightlife</option>
-    <option>Other</option>
-  </select>
-  <br>
-  <textarea placeholder ="comment" name="comment"></textarea>
-  <br>
-  <select name="rating">
-    <option selected disabled>Rating</option>
-    <option id="5_stars">5</option>
-    <option id="4_stars">4</option>
-    <option id="3_stars">3</option>
-    <option id="2_stars">2</option>
-    <option id="1_stars">1</option>
-  </select>
-
-  <br/>
-  <input type="submit" value="Add Activity">
-
-  <br>
-
-
-</form>
+<div id="create_activity_form">
+  <form method="POST" action="/activities">
+    <title>Create Activity</title>
+    <input type="text" name="title" placeholder ="Activity Name">
+    <input type="text" name="city" placeholder ="City">
+    <input class="radio" type="radio" name="cost" id="low_cost" value="$">$
+    <input class="radio" type="radio" name="cost" id="med_cost" value="$$">$$
+    <input class="radio" type="radio" name="cost" id="high_cost" value="$$$">$$$
+    <br/>
+    <br/>
+    <textarea placeholder ="comment" name="comment"></textarea>
+    <br>
+    <br/>
+    <select name="category">
+      <option selected disabled>Category</option>
+      <option>Food</option>
+      <option>Extreme</option>
+      <option>Sport</option>
+      <option>Park</option>
+      <option>Event</option>
+      <option>Nightlife</option>
+      <option>Other</option>
+    </select>
+    <select name="rating">
+      <option selected disabled>Rating</option>
+      <option id="5_stars">5</option>
+      <option id="4_stars">4</option>
+      <option id="3_stars">3</option>
+      <option id="2_stars">2</option>
+      <option id="1_stars">1</option>
+    </select>
+    <input class="submit" type="submit" value="Add Activity">
+  </form>
+</div>

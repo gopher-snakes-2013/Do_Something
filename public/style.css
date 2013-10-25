@@ -7,31 +7,52 @@ body {
 }
 
 li {
-  line-height: 20px;
+  line-height: 14px;
+  font-size: 16px;
   padding-bottom: 5px;
-  color: black;
+  /*color: rgb(235,235,235);*/
 }
 
 ul{
   height: auto;
   background-color:rgba(255,255,255,0.7);
+  /*background-color: rgba(0,0,0,0.7);*/
+  /*color: white;*/
   border-radius: 12px;
   list-style-type:none;
   position: inline;
   margin: auto;
 }
 
-#activities{
-  width: 100%;
-  margin: 0 auto;
+input{
+  border-radius: 3px;
+  border: 1px solid;
+  height: 20px;
+  width: 140px;
+  padding: 3px;
+  /*margin-top: 10px;*/
+  box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+  margin: 2px;
+}
+
+textarea { 
+  width: 400px;
+  max-width: 400px;
+  height: 150px;
+  line-height: 150%;
+  border-radius: 3px;
+  margin: 2px;
 }
 
 h1 {
   font-family: 'Neuton', serif;
   text-align: center;
   font-size: 50px;
-  margin-top: 48px;
-  margin-bottom: 0px;
+  margin: 48px 60px 0px 60px;
+  /*background-color: rgba(255,255,255,0.6);*/
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  border-radius: 10px;
 } 
 
 h2{
@@ -40,7 +61,10 @@ h2{
   font-size: 35px;
   margin-top: 25px;
   margin-bottom: 10px;
-
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  /*background-color: rgba(255,255,255,0.6);*/
+  border-radius: 10px;
 }
 
 h3{
@@ -53,6 +77,19 @@ h5{
   font-family: 'Neuton', serif;
   margin-bottom: 4px;
   margin-top: 10px;
+}
+
+a {
+  font-size: 20px;
+}
+
+.radio {
+  width: 10px;
+}
+
+#activities{
+  width: 100%;
+  margin: 0 auto;
 }
 
 #container {
@@ -81,6 +118,11 @@ h5{
   padding-left: 70px;
 } 
 
+#create_activity_form{
+  margin: 0 auto;
+  max-width: 700px;
+}
+
 .activity_pieces{
   font-family: 'Neuton', serif;
   font-size: 20px;
@@ -91,12 +133,13 @@ h5{
   margin-bottom: 1em;
 }
 
-#submit{
+.submit{
   margin-top: 6px;
+  background-color: default;
 }
 
 small{
-  font-size: 18px;
+  font-size: 14px;
 }
 
 
@@ -105,78 +148,6 @@ small{
     width: 80%;
     margin-left: 10%;
     display: block;
-
   }
 }
 
-/*
-
-
-h2 {
-  text-align: center;
-  color: #bbbbbb;
-  margin: 0px 0 70px 0;
-}
-p {
-  color: rgba(255,255,255,1);
-  background: black;
-  background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
-  background: -webkit-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
-  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
-  padding: 10px;
-  line-height: 28px;
-  text-align: justify;
-  position: absolute;
-  bottom: 0;
-  margin: 0;
-  height: 30px;
-  transition: height .5s;
-  -webkit-transition: height .5s;
-  -moz-transition: height .5s;
-}
-
-small {
-  opacity: 0;
-}
-
-.show-description p {
-  height: 150px;
-}
-
-.show-description small {
-  opacity: 1;
-}
-
-.first{
-  background-image: url("http://dash.ga.co/assets/firstcourse.jpg");
-}
-.second{
-  background-image: url("http://dash.ga.co/assets/secondcourse.jpg");
-}
-.dessert{
-  background-image: url("http://dash.ga.co/assets/dessertcourse.jpg");
-}
-.price {
-  float: right;
-}
-@media (max-width: 500px) {
-  h1 {
-    font-size: 50px;
-    margin-top: 20px;
-    line-height: 40px;
-  }
-  h2 {
-    font-size: 20px;
-    margin: 20px 0 30px 0;
-  }
-  div {
-    margin: 20px 12px 0 12px;
-  }
-  p {
-    font-size: 20px;
-    line-height: 24px;
-  }
-  small {
-    font-size: 16px;
-  }
-}*/

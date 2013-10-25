@@ -10,7 +10,7 @@
       <a href="/logout">Logout</a>
     <% else %>
       <div id="sign_in" class="enter_site">
-        <h3><a href="/auth/facebook">Do Something with Facebook</a></h3>
+        <h3><a href="/auth/facebook">Sign Up or Login with Facebook</a></h3>
         <h3>Sign In</h3>
         <form class="sign_id_form" method="post" action="/login">
           <h5>User Email:</h5>
@@ -18,7 +18,7 @@
           <h5>User Password:</h5>
           <input type="password" name="sign_in_user[password]" placeholder="User Password" required>
           <br>
-          <input id="submit" type="submit" value="Sign In">
+          <input class="submit" type="submit" value="Sign In">
         <div class="error_message">
           <% if flash[:log_in_error] %>
             <%= flash[:log_in_error] %>
@@ -37,7 +37,7 @@
           <h5>Password:</h5>
           <input type="password" name="user[password]" placeholder="Password" required>
           <br>
-          <input type="submit" value="Sign Up">
+          <input class="submit" type="submit" value="Sign Up">
           <div class="error_message">
             <% if flash[:sign_up_error] %>
               <% flash[:sign_up_error].each do |k, v| %>
