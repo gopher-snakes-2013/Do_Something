@@ -1,10 +1,23 @@
 Do_Something
 ============
 
-Team Do Something
+Team Do Something:
+Ryan Hedges
+Steven Nugent
+Annie Sing
+Robert Taraya
+
+
+Learning Objectives / Goals:
+* Timeboxing / Meetups
+* Testing - Limited
+* Facebook Login
+* Sessions
+* Ajax for Some Routes (All buttons Ajax?)
+* jQuery with some Javascript
+
 
 User Stories
-
 
 Release 1 -
 * User can go to Do Something home page
@@ -21,10 +34,3 @@ Release 3 -
 * APIs: Google Maps, Yelp
 
 
-Learning Objectives / Goals:
-* Timeboxing / Meetups
-* Testing - Limited
-* Facebook Login
-* Sessions
-* Ajax for Some Routes (All buttons Ajax?)
-* jQuery with some Javascript
