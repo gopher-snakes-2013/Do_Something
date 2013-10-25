@@ -74,7 +74,9 @@ h5{
 }
 
 a {
-  font-size: 20px;
+  font-size: 25px;
+  /*color: ;*/
+  text-decoration: none;
 }
 
 .radio {
@@ -105,6 +107,22 @@ a {
   padding-left: 10px;
 }
 
+#error_messages{
+  height: auto;
+  background-color:rgba(255,255,255,0.7);
+  border-radius: 12px;
+  list-style-type:none;
+  position: block;
+  margin: auto;
+  max-width: 300px;
+  padding: 5px;
+  float:right;
+  margin-top: 6%;
+  margin-right: 31%;
+  color:red;
+  line-height: 17px;
+}
+
 #sign_in {
   width: 40%;
   text-align: left;
@@ -115,6 +133,7 @@ a {
 #create_activity_form{
   margin: 0 auto;
   max-width: 700px;
+  position: block;
 }
 
 .activity_pieces{
