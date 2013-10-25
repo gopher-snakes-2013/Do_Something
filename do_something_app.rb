@@ -51,7 +51,7 @@ get '/' do
   if logged_in?
     @activities = Activity.where(user_id: @current_user)
   else
-    @activities = Activity.last(5)
+    @activities = Activity.last(6)
   end
   erb :index
 end
