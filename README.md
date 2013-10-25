@@ -2,10 +2,10 @@ Do_Something
 ============
 
 Team Do Something:
-Ryan Hedges
-Steven Nugent
-Annie Sing
-Robert Taraya
+* Ryan Hedges
+* Steven Nugent
+* Annie Sing
+* Robert Taraya
 
 
 Learning Objectives / Goals:
