@@ -44,6 +44,7 @@ h3#facebook {
 .activity-feed {
 	display: inline;
 	float: right;
+	width: 50%;
 	margin-right: 200px;
 }
 
@@ -82,3 +83,33 @@ p.recent_activity_item {
 	margin-left: 25px;
 }
 
+.activity {
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#delete {
+	margin-left: 15%;
+}
+
+#create_activity {
+	background-color: white;
+	border-radius: 5px;
+	padding: 20px;
+	width: 25%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#create_activity_header {
+	font-family: 'Righteous', cursive;
+	text-align: center;
+	color: #3F6299;
+}
+
+#add_button {
+	margin-top: 10px;
+}

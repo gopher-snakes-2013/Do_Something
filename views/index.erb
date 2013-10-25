@@ -5,8 +5,11 @@
 <% if @current_user %>
   <div id="user-control-panel">
     <h3>Welcome, <%= @current_user.first_name %></h3>
-    <a href="/activities/new">Create an activity</a><br/>
-    <a href="/logout">Logout</a>
+    <button id="select_random">Do Something Random</button><br/>
+    <p>
+      <a href="/activities/new">Create an activity</a><br/>
+      <a href="/logout">Logout</a>
+    </p>
   </div>
 
 <% else %>
@@ -56,9 +59,8 @@
 <% end %>
 
 <% if logged_in? %>
-<div class="activity-feed">
+  <div class="activity-feed">
     <h2>Your Activities</h2>
-    <button id="select_random">select random</button>
 <% else %>
   <div class="activity-feed">
     <h2>Recent Activity</h2>
@@ -66,28 +68,28 @@
 
   <% @activities.reverse.each do |activity| %>
     <div class= "activity" id="activity_<%= activity.id %>">
-    <p class="recent_activity_item">
-      <span id="activity_title">Activity: <%=activity.title%></span>
-      <br>
-      <span id="activity_city">City: <%=activity.city%></span>
-      <br>
-      <span id="activity_cost">Cost: <%=activity.cost%></span>
-      <br>
-      <span id="activity_category">Cost: <%=activity.category%></span>
-      <br>
-      <% if logged_in? %>
-        <span id="activity_comment">Comment: <%=activity.comment%></span>
+      <p class="recent_activity_item">
+        <span id="activity_title">Activity: <%=activity.title%></span>
         <br>
-      <% end %>
-      <span class="activity_rating">Rating: </span><span class="rating_score"><%=activity.rating%></span>
-      <br>
-      <span id="activity_created">Created: <%=activity.created_at.getlocal.strftime("%m/%d/%Y at %l:%M%p")%></span>
+        <span id="activity_city">City: <%=activity.city%></span>
+        <br>
+        <span id="activity_cost">Cost: <%=activity.cost%></span>
+        <br>
+        <span id="activity_category">Cost: <%=activity.category%></span>
+        <br>
+        <% if logged_in? %>
+          <span id="activity_comment">Comment: <%=activity.comment%></span>
+          <br>
+        <% end %>
+        <span class="activity_rating">Rating: </span><span class="rating_score"><%=activity.rating%></span>
+        <br>
+        <span id="activity_created">Created: <%=activity.created_at.getlocal.strftime("%m/%d/%Y at %l:%M%p")%></span>
+        <% if logged_in? %>
+          <form method="POST" action="/delete/<%=activity.id%>">
+            <button id="delete">Delete Activity</button>
+          </form>
+        <% end %>
+      </p>
     </div>
-      <% if logged_in? %>
-        <form method="POST" action="/delete/<%=activity.id%>">
-          <button id="delete">Delete Activity</button>
-        </form>
-      <% end %>
-    </p>
   <%end%>
 </div>

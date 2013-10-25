@@ -3,8 +3,8 @@ $(document).ready(function(){
 	function ratingToStars() {
 		var $scores = $('.rating_score')
 		for (var i=0;i<$scores.length;i++)
-		{ 	$score = $scores[i].innerText
-			$scoreInteger = parseInt($score)
+		{ 	var $score = $scores[i].innerText
+			var $scoreInteger = parseInt($score)
 			if ($scoreInteger === 5){
 				$scores[i].innerText = "★★★★★"
 			} else if ($scoreInteger === 4){
