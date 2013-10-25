@@ -8,6 +8,9 @@
       <h2>Welcome, <%= @current_user.first_name %></h2>
       <a href="/activities/new">Create an activity</a><br/>
       <a href="/logout">Logout</a>
+      <br>
+      <button id="select_random">select random</button>
+
     <% else %>
       <div id="sign_in" class="enter_site">
         <h3><a href="/auth/facebook">Sign Up or Login with Facebook</a></h3>
@@ -57,7 +60,7 @@
       <div class="sub_title"><h2>Recently Posted Activities</h2></div>
     <% end %>
       <% @activities.reverse.each do |activity| %>
-        <ul class="activity_pieces">
+        <ul class="activity_pieces" id="activity_<%=activity.id%>">
           <li>Activity: 
             <small><%=activity.title%></small>
           </li>
